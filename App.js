@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, View, ImageBackground } from 'react-native';
+import HomeScreen from './screens/HomeScreen';
+import Navigation from './Components/Navigation';
+
+const Stack = createNativeStackNavigator();
+
+const Image = { uri : "https://static.wikia.nocookie.net/pokemongo/images/d/d1/Pokedex_Background.png" };
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+return (    
+//<ImageBackground source={Image} resizeMode="cover" style={styles.image}>
+  // <View style={styles.container}>
+
+  //   <NavigationContainer style={styles.general}>
+  //     <Stack.Navigator>
+  //       <Stack.Screen name="POKéDEX" component={HomeScreen} />
+  //     </Stack.Navigator>
+  //   </NavigationContainer> 
+  // </View>
+  //</ImageBackground>
+  <Navigation></Navigation>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex:1,
+  },
+  general: {
+  },
+  image: {
   },
 });
