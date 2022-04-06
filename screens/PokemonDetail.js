@@ -1,28 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, FlatList, Text, Image } from 'react-native';
-import { getPokemon } from '../Api/PokeApi';
+import { getPokemon, getPokemonSpecies } from '../Api/PokeApi';
 import CustomItem from '../Components/Item';
 
 
 export default function PokemonDetail(props) {
 
   const {navigation, route, ...restProps} = props
-  const { pokeID, pokeImage } = route.params;
+  const { uri } = route.params;
 
-  // const PokeImage = { uri: 'https://professorlotus.com/Sprites/'+pokeID+'.gif' };
-
-  const [textParent, setTextParent] = useState();
-  const [listPokemon, setListPokemon] = useState("");
-  const [nextPage, setNextPage] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [pokemonDatas, setPokemonDatas] = useState(null);
+  const [pokemonName, setPokemonName] = useState("");
+  const [pokemonNameVf, setPokemonNameVf] = useState("");
+  const [pokemonDesc, setPokemonDesc] = useState("");
+  const [PokemonType, setPokemonType] = useState("");
 
   useEffect(() => {
-    loadPokemon(nextPage)
+    loadPokemon(uri)
+    console.log('test')
   }, [])
 
   const loadPokemon = (url) => {
     getPokemon(url).then(datas => {
-      setListPokemon([...listPokemon, ...datas.results])
-      setNextPage(datas.next)
+      setPokemonDatas(datas)
+      getPokemon(datas.species.url).then(data => {
+        console.log(data);
+        const name = data.names.find(name => name.language.name === "fr");
+        const desc = data.flavor_text_entries.find(desc => desc.language.name === "fr") ;
+        setPokemonNameVf(name.name);
+        setPokemonDesc(desc.flavor_text);
+      })
+      getPokemon(datas.types.type.url).then(data => {
+        console.log(data);
+        const type = data.names.find(name => name.language.name === "fr");
+        setPokemonType(type.name);
+      })
     })
   }
 
@@ -34,10 +46,19 @@ export default function PokemonDetail(props) {
     <>
     <Image
       style={styles.imgPokemon}
-      source={{uri: pokeImage}}
+      source={{uri: pokemonDatas ? pokemonDatas.sprites.other.home.front_default : null}}
     />
     <View style={styles.container}>
-      <Text>{pokeID}</Text>
+      {
+        pokemonDatas ?
+        <>
+          <Text>{pokemonDatas.id} - {pokemonNameVf}</Text>
+          <Text>{pokemonDesc}</Text>
+          <Text>{pokemonDatas.types.type}</Text>
+        </> :
+        null
+      }
+      
     </View>
     </>
   )

@@ -11,3 +11,11 @@ return fetch(url)
     .then((response)=> response.json())
     .catch((error) => console.log('error',error));
 }
+
+export function getPokemonSpecies(url = "https://pokeapi.co/api/v2/fr/pokemon-species"){
+    
+
+    return fetch(url)
+        .then((response)=> response.json())
+        .catch((error) => console.log('error',error));
+}

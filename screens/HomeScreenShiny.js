@@ -4,7 +4,7 @@ import { getPokemon } from '../Api/PokeApi';
 import CustomItemShiny from '../Components/ItemShiny';
 
 
-export default function Home(props) {
+export default function HomeScreenShiny(props) {
 
   const {navigation, ...restProps} = props
 
