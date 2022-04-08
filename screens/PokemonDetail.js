@@ -13,27 +13,47 @@ export default function PokemonDetail(props) {
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonNameVf, setPokemonNameVf] = useState("");
   const [pokemonDesc, setPokemonDesc] = useState("");
-  const [PokemonType, setPokemonType] = useState("");
+  const [pokemonType0, setPokemonType0] = useState("");
+  const [pokemonType1, setPokemonType1] = useState("");
 
   useEffect(() => {
     loadPokemon(uri)
-    console.log('test')
+    //console.log('test')
   }, [])
 
   const loadPokemon = (url) => {
     getPokemon(url).then(datas => {
       setPokemonDatas(datas)
+      const type = datas.types;
+      var count = 0;
+      var typePrecedent = "";
+
+      type.forEach(type => {
+
+        getPokemon(type.type.url).then(data => {
+          data.names.forEach(data => {
+            if(data.language.name === 'fr'){
+              if( count < 2 && typePrecedent != data.name){
+                if(count === 0) {
+                  setPokemonType0(data.name);
+                } else {
+                  setPokemonType1(data.name);
+                }
+                count++;
+                typePrecedent = data.name;
+                console.log(typePrecedent);
+              }
+            }
+          });
+        })
+      });
+
       getPokemon(datas.species.url).then(data => {
-        console.log(data);
+        //console.log(data);
         const name = data.names.find(name => name.language.name === "fr");
         const desc = data.flavor_text_entries.find(desc => desc.language.name === "fr") ;
         setPokemonNameVf(name.name);
         setPokemonDesc(desc.flavor_text);
-      })
-      getPokemon(datas.types.type.url).then(data => {
-        console.log(data);
-        const type = data.names.find(name => name.language.name === "fr");
-        setPokemonType(type.name);
       })
     })
   }
@@ -54,7 +74,8 @@ export default function PokemonDetail(props) {
         <>
           <Text>{pokemonDatas.id} - {pokemonNameVf}</Text>
           <Text>{pokemonDesc}</Text>
-          <Text>{pokemonDatas.types.type}</Text>
+          <Text>{pokemonType0}</Text>
+          <Text>{pokemonType1}</Text>
         </> :
         null
       }

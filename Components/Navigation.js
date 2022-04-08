@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import { TabRouter } from "react-navigation"
 import HomeScreen from '../screens/HomeScreen';
 import HomeScreenShiny from '../screens/HomeScreenShiny';
+import RechercheScreen from '../screens/RechercheScreen';
 import PokemonDetail from '../screens/PokemonDetail';
 import PokemonDetailShiny from '../screens/PokemonDetailShiny';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -32,6 +33,14 @@ function PokemonShinyStack() {
     )
 };
 
+function RechercheStack() {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Recherche" component={RechercheScreen} ></Stack.Screen>
+    </Stack.Navigator>
+  )
+};
+
 export default function Navigation(){
     return(
         <NavigationContainer>
@@ -48,6 +57,11 @@ export default function Navigation(){
                     options={{title: "POKéDEX SHINY", headerTintColor: "white", headerStyle: {backgroundColor: "red"} }}
                     name="POKéDEX SHINY"
                     component={PokemonShinyStack}
+                />
+                 <Tab.Screen
+                    options={{title: "POKéDEX", headerTintColor: "white", headerStyle: {backgroundColor: "red"} }}
+                    name="RECHERCHE"
+                    component={RechercheStack}
                 />
             </Tab.Navigator>
         </NavigationContainer>

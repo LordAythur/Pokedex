@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { Text, StyleSheet, View, FlatList, TextInput } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import { getPokemon } from '../Api/PokeApi';
 import CustomItem from '../Components/Item';
 
 
-export default function HomeScreen(props) {
+export default function RechercheScreen(props) {
 
   const {navigation, ...restProps} = props
 
   const [textParent, setTextParent] = useState();
   const [listPokemon, setListPokemon] = useState("");
-  const [nextPage, setNextPage] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [nextPage, setNextPage] = useState("https://pokeapi.co/api/v2/pokemon/"+text);
+  const [text, setText] = useState('');
+  const [pokemonNameSearch, setPokemonNameSearch] = useState('');
 
   useEffect(() => {
-    loadPokemon(nextPage)
   }, [])
 
   const loadPokemon = (url) => {
     getPokemon(url).then(datas => {
-      setListPokemon([...listPokemon, ...datas.results])
-      setNextPage(datas.next)
+      console.log(datas)
+      setListPokemon([...listPokemon, datas])
     })
+    console.log('test')
   }
 
   const renderItem = ({ item }) => (
@@ -31,6 +34,19 @@ export default function HomeScreen(props) {
     <>
     <View style={styles.container}>
     </View>
+    <TextInput
+        style={{height: 40}}
+        placeholder="Type here to translate!"
+        onChangeText={
+          newText => setText(newText)
+          
+        }
+        onSubmitEditing={() => loadPokemon("https://pokeapi.co/api/v2/pokemon/"+text)}
+        defaultValue={text}
+      />
+      <Text style={{padding: 10, fontSize: 42}}>
+        {text}
+      </Text>
     <FlatList 
       style={styles.list}
       numColumns={3}
@@ -38,9 +54,6 @@ export default function HomeScreen(props) {
       renderItem={renderItem} 
       keyExtractor={item => item.name}
       onEndReachedThreshold={0.5}
-      onEndReached={() => {
-        loadPokemon(nextPage)
-      }} 
     />
     </>
   )
