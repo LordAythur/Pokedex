@@ -13,6 +13,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Vibration} from 'react-native';
 import { getPokemon } from '../Api/PokeApi';
 
+import { Ionicons } from '@expo/vector-icons'
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -51,18 +53,73 @@ export default function Navigation(){
                 tabBarActiveTintColor: 'red',
               }}>
                 <Tab.Screen
-                    options={{title: "POKéDEX", headerTintColor: "white", headerStyle: {backgroundColor: "red"} }}
+                    options={{title: "POKéDEX", headerTintColor: "white", headerStyle: {backgroundColor: "red"},
+                    tabBarIcon: (tabInfo) => {
+                      return (
+                        <Ionicons
+                          name="md-home"
+                          size={24}
+                          color={tabInfo.focused ? "red" : "#707070"}
+                        />
+                      );
+                    }, }}
                     name="POKéDEX"
                     component={PokemonStack}
                     />
                 <Tab.Screen
-                    options={{title: "POKéDEX SHINY", headerTintColor: "white", headerStyle: {backgroundColor: "red"} }}
+                    options={{title: "POKéDEX SHINY", headerTintColor: "white", headerStyle: {backgroundColor: "red"},
+                    tabBarIcon: (tabInfo) => {
+                      return (
+                        <Ionicons
+                          name="md-home"
+                          size={24}
+                          color={tabInfo.focused ? "red" : "#707070"}
+                        />
+                      );
+                    }, }}
                     name="POKéDEX SHINY"
                     component={PokemonShinyStack}
                 />
                  <Tab.Screen
-                    options={{title: "POKéDEX", headerTintColor: "white", headerStyle: {backgroundColor: "red"} }}
+                    options={{title: "RECHERCHE", headerTintColor: "white", headerStyle: {backgroundColor: "red"},
+                    tabBarIcon: (tabInfo) => {
+                      return (
+                        <Ionicons
+                          name="md-search"
+                          size={24}
+                          color={tabInfo.focused ? "red" : "#707070"}
+                        />
+                      );
+                    }, }}
                     name="RECHERCHE"
+                    component={RechercheStack}
+                />
+                <Tab.Screen
+                    options={{title: "EQUIPE", headerTintColor: "white", headerStyle: {backgroundColor: "red"},
+                    tabBarIcon: (tabInfo) => {
+                      return (
+                        <Ionicons
+                          name="md-bookmark-outline"
+                          size={24}
+                          color={tabInfo.focused ? "red" : "#707070"}
+                        />
+                      );
+                    }, }}
+                    name="EQUIPE"
+                    component={RechercheStack}
+                />
+                <Tab.Screen
+                    options={{title: "PARAMETRES", headerTintColor: "white", headerStyle: {backgroundColor: "red"},
+                    tabBarIcon: (tabInfo) => {
+                      return (
+                        <Ionicons
+                          name="md-settings-outline"
+                          size={24}
+                          color={tabInfo.focused ? "red" : "#707070"}
+                        />
+                      );
+                    }, }}
+                    name="PARAMETRES"
                     component={RechercheStack}
                 />
             </Tab.Navigator>

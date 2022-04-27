@@ -21,13 +21,13 @@ export default function RechercheScreen(props) {
 
   const loadPokemon = (url) => {
     getPokemon(url).then(datas => {
-      setListPokemon([...listPokemon, datas])
+      setListPokemon([datas])
       console.log(urlNext)
     })
   }
 
   const renderItem = ({ item }) => (
-    <CustomItemSearch url={urlNext+text} image={item.sprites.other.home.front_default} name={item.name} navigation={navigation}></CustomItemSearch>
+    <CustomItemSearch url={urlNext+text} image={item.sprites.other.home.front_default} id={item.id} name={item.name} navigation={navigation}></CustomItemSearch>
   );
 
   return(
@@ -35,7 +35,7 @@ export default function RechercheScreen(props) {
     <View style={styles.container}>
     </View>
     <TextInput
-        style={{}}
+        style={styles.textInput}
         placeholder="Recherchez un Pokémon"
         onChangeText={
           newText => setText(newText.toLowerCase())
@@ -65,46 +65,18 @@ container: {
   justifyContent: 'center',
   alignItems: 'center',
 },
-containerButton: {
-  flex: 1,
-  justifyContent: 'space-around',
-  textAlign: 'center',
-  alignItems: 'center',
-  flexDirection: 'row',
-},
-image: {
-  flex: 1,
-},
-imagePokemon: {
-  height: 64,
-  width: 64,
-},
-text: {
-  color: 'white',
-  fontSize: 42,
-  lineHeight: 84,
-  fontWeight: 'bold',
-},
-baseText: {
-  fontSize: 50,
-  margin: 20,
-},
-title: {
-  fontSize: 15,
-  textTransform: 'capitalize',
-},
 list: {
   marginLeft: 10,
   flex: 1,
   alignSelf: 'stretch',
   textAlign: 'center',
 },
-item: {
-  margin: 15,
-  minWidth: 85,
-  width: 'auto',
-  textAlign: 'center',
-  flex: 1,
-  alignItems: 'center',
-},
+textInput:{
+  borderRadius:10,
+  backgroundColor:'white',
+  margin:10,
+  padding:5,
+  paddingLeft:10,
+  paddingRight:10
+}
 });

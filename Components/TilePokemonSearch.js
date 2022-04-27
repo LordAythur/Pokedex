@@ -23,7 +23,7 @@ useEffect(() => {
 function onPress(){
     Vibration.vibrate(10 * 0.5);
     //getPokemonInfo(uri).then(data => {
-        navigation.navigate('PokemonDetail',{
+        navigation.navigate('PokemonDetailSearch',{
             uri:uri,
         });
     //})
@@ -50,7 +50,7 @@ return (
 
 const styles = StyleSheet.create({
     imgPokemon: {
-        height: 75,
-        width: 75
+        height: 200,
+        width: 200
     },
 });

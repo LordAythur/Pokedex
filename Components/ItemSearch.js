@@ -4,14 +4,14 @@ import TilePokemonSearch from './TilePokemonSearch';
 
 export default function CustomItem(props) {
 
-    const {image, name, url, navigation, ...restProps} = props
+    const {image, id, name, url, navigation, ...restProps} = props
 
     //console.log(text, color)
 
     return (
         <View style={styles.item}>
             <TilePokemonSearch uri={url} navigation={navigation}></TilePokemonSearch>
-            <Text style={styles.title}>{name}</Text>
+            <Text style={styles.title}>N°{id} - {name}</Text>
         </View>
     )       
 }
