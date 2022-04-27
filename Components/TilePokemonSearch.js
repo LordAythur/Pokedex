@@ -12,7 +12,8 @@ const [pokemonSprite, setPokemonSprite] = useState(null)
 
 useEffect(() => {
     getPokemonInfo(uri).then(data => {
-        setPokemonSprite(data.sprites.other.home.front_default)
+        console.log('fin :'+uri)
+        setPokemonSprite(data.sprites.other["official-artwork"].front_default)
         setPokemonDatas(data)
     })
 }, [])

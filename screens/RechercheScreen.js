@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, StyleSheet, View, FlatList, TextInput } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { getPokemon } from '../Api/PokeApi';
-import CustomItem from '../Components/Item';
+import CustomItemSearch from '../Components/ItemSearch';
 
 
 export default function RechercheScreen(props) {
@@ -14,20 +14,20 @@ export default function RechercheScreen(props) {
   const [nextPage, setNextPage] = useState("https://pokeapi.co/api/v2/pokemon/"+text);
   const [text, setText] = useState('');
   const [pokemonNameSearch, setPokemonNameSearch] = useState('');
+  var urlNext = "https://pokeapi.co/api/v2/pokemon/";
 
   useEffect(() => {
   }, [])
 
   const loadPokemon = (url) => {
     getPokemon(url).then(datas => {
-      console.log(datas)
       setListPokemon([...listPokemon, datas])
+      console.log(urlNext)
     })
-    console.log('test')
   }
 
   const renderItem = ({ item }) => (
-    <CustomItem url={item.url} name={item.name} navigation={navigation}></CustomItem>
+    <CustomItemSearch url={urlNext+text} image={item.sprites.other.home.front_default} name={item.name} navigation={navigation}></CustomItemSearch>
   );
 
   return(
@@ -35,21 +35,21 @@ export default function RechercheScreen(props) {
     <View style={styles.container}>
     </View>
     <TextInput
-        style={{height: 40}}
-        placeholder="Type here to translate!"
+        style={{}}
+        placeholder="Recherchez un Pokémon"
         onChangeText={
-          newText => setText(newText)
+          newText => setText(newText.toLowerCase())
           
         }
         onSubmitEditing={() => loadPokemon("https://pokeapi.co/api/v2/pokemon/"+text)}
-        defaultValue={text}
+        defaultValue={''}
       />
-      <Text style={{padding: 10, fontSize: 42}}>
+      {/* <Text style={{padding: 10, fontSize: 42}}>
         {text}
-      </Text>
+      </Text> */}
     <FlatList 
       style={styles.list}
-      numColumns={3}
+      numColumns={2}
       data={listPokemon} 
       renderItem={renderItem} 
       keyExtractor={item => item.name}

@@ -6,6 +6,7 @@ import HomeScreenShiny from '../screens/HomeScreenShiny';
 import RechercheScreen from '../screens/RechercheScreen';
 import PokemonDetail from '../screens/PokemonDetail';
 import PokemonDetailShiny from '../screens/PokemonDetailShiny';
+import PokemonDetailSearch from '../screens/PokemonDetailSearch';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -37,6 +38,7 @@ function RechercheStack() {
   return(
     <Stack.Navigator>
       <Stack.Screen name="Recherche" component={RechercheScreen} ></Stack.Screen>
+      <Stack.Screen name="PokemonDetailSearch" component={PokemonDetailSearch}></Stack.Screen>
     </Stack.Navigator>
   )
 };

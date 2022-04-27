@@ -66,7 +66,7 @@ export default function PokemonDetail(props) {
     <>
     <Image
       style={styles.imgPokemon}
-      source={{uri: pokemonDatas ? pokemonDatas.sprites.other["official-artwork"].front_default : null}}
+      source={{uri: pokemonDatas ? pokemonDatas.sprites.other.home.front_default : null}}
     />
     <View style={styles.container}>
       {
@@ -74,10 +74,8 @@ export default function PokemonDetail(props) {
         <>
           <Text>{pokemonDatas.id} - {pokemonNameVf}</Text>
           <Text>{pokemonDesc}</Text>
-          <View style={styles.containerType}>
-            <Text style={[styles.typePoison, styles.type]}>{pokemonType0}</Text>
-            <Text style={[styles.typePlante, styles.type]}>{pokemonType1}</Text>
-          </View>
+          <Text>{pokemonType0}</Text>
+          <Text>{pokemonType1}</Text>
         </> :
         null
       }
@@ -93,44 +91,46 @@ container: {
   justifyContent: 'center',
   alignItems: 'center',
 },
+containerButton: {
+  flex: 1,
+  justifyContent: 'space-around',
+  textAlign: 'center',
+  alignItems: 'center',
+  flexDirection: 'row',
+},
+image: {
+  flex: 1,
+},
 imgPokemon: {
   height: 100,
   width: 100,
 },
-
-
-containerType: {
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexWrap: 'nowrap',
-  flexDirection: 'row'
+text: {
+  color: 'white',
+  fontSize: 42,
+  lineHeight: 84,
+  fontWeight: 'bold',
 },
-type: {
-  width: 100,
-  height: 40,
+baseText: {
+  fontSize: 50,
+  margin: 20,
+},
+title: {
+  fontSize: 15,
+  textTransform: 'capitalize',
+},
+list: {
+  marginLeft: 10,
+  flex: 1,
+  alignSelf: 'stretch',
   textAlign: 'center',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: 10,
-  padding: 10,
-  margin: 10
 },
-typePlante: {backgroundColor: '#78C850'},
-typeFeu: {backgroundColor: '#F08030'},
-typeEau: {backgroundColor: '#6890F0'},
-typeInsect: {backgroundColor: '#A8B820'},
-typeNormal: {backgroundColor: '#A8A878'},
-typePoison: {backgroundColor: '#A040A0'},
-typeElectrique: {backgroundColor: '#F8D030'},
-typeSol: {backgroundColor: '#E0C068'},
-typeFee: {backgroundColor: '#EE99AC'},
-typeCombat: {backgroundColor: '#C03028'},
-typePsy: {backgroundColor: '#F85888'},
-typeRoche: {backgroundColor: '#B8A038'},
-typeSpectre: {backgroundColor: '#705898'},
-typeGlace: {backgroundColor: '#98D8D8'},
-typeDragon: {backgroundColor: '#7038F8'},
-typeAcier: {backgroundColor: '#F8F9FA'},
-typeTenebre: {backgroundColor: '#705848'},
-typeVol: {backgroundColor: '#A890F0'},
+item: {
+  margin: 15,
+  minWidth: 85,
+  width: 'auto',
+  textAlign: 'center',
+  flex: 1,
+  alignItems: 'center',
+},
 });
