@@ -4,9 +4,12 @@ import { TabRouter } from "react-navigation"
 import HomeScreen from '../screens/HomeScreen';
 import HomeScreenShiny from '../screens/HomeScreenShiny';
 import RechercheScreen from '../screens/RechercheScreen';
+import EquipeScreen from '../screens/EquipeScreen';
+import ParametreScreen from '../screens/ParametreScreen';
 import PokemonDetail from '../screens/PokemonDetail';
 import PokemonDetailShiny from '../screens/PokemonDetailShiny';
 import PokemonDetailSearch from '../screens/PokemonDetailSearch';
+import PokemonDetailEquipe from '../screens/PokemonDetailEquipe';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -39,8 +42,25 @@ function PokemonShinyStack() {
 function RechercheStack() {
   return(
     <Stack.Navigator>
-      <Stack.Screen name="Recherche" component={RechercheScreen} ></Stack.Screen>
+      <Stack.Screen name="Recherchez une Pokémon" component={RechercheScreen} ></Stack.Screen>
       <Stack.Screen name="PokemonDetailSearch" component={PokemonDetailSearch}></Stack.Screen>
+    </Stack.Navigator>
+  )
+};
+
+function EquipeStack() {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Votre équipe" component={EquipeScreen} ></Stack.Screen>
+      <Stack.Screen name="PokemonDetailEquipe" component={PokemonDetailEquipe}></Stack.Screen>
+    </Stack.Navigator>
+  )
+};
+
+function ParametreStack() {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Ajustez les options" component={ParametreScreen} ></Stack.Screen>
     </Stack.Navigator>
   )
 };
@@ -106,7 +126,7 @@ export default function Navigation(){
                       );
                     }, }}
                     name="EQUIPE"
-                    component={RechercheStack}
+                    component={EquipeStack}
                 />
                 <Tab.Screen
                     options={{title: "PARAMETRES", headerTintColor: "white", headerStyle: {backgroundColor: "red"},
@@ -120,7 +140,7 @@ export default function Navigation(){
                       );
                     }, }}
                     name="PARAMETRES"
-                    component={RechercheStack}
+                    component={ParametreStack}
                 />
             </Tab.Navigator>
         </NavigationContainer>
