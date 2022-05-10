@@ -158,7 +158,7 @@ export default function PokemonDetail(props) {
     <View style={styles.container}>
       <Image
         style={styles.imgPokemon}
-        source={{uri: pokemonDatas ? pokemonDatas.sprites.other["official-artwork"].front_default : null}}
+        source={{uri: pokemonDatas ? pokemonDatas.sprites.other.home.front_default : null}}
       />
       {
         pokemonDatas ?
@@ -178,6 +178,12 @@ export default function PokemonDetail(props) {
             <Text style={styles.capa}>{pokemonCapa2}</Text> */}
             <Button
               title="Ajouter à l'équipe"
+              style={styles.bouton}
+              onPress=""
+            >
+            </Button>
+            <Button
+              title="Retirer de l'équipe"
               style={styles.bouton}
               onPress=""
             >
@@ -257,24 +263,23 @@ type: {
   borderRadius: 10,
   padding: 10,
   margin: 10,
-  color:'white'
 },
-typePlante: {backgroundColor: '#78C850'},
-typeFeu: {backgroundColor: '#F08030'},
-typeEau: {backgroundColor: '#6890F0'},
-typeInsect: {backgroundColor: '#A8B820'},
-typeNormal: {backgroundColor: '#A8A878'},
-typePoison: {backgroundColor: '#A040A0'},
-typeElectrique: {backgroundColor: '#F8D030'},
-typeSol: {backgroundColor: '#E0C068'},
-typeFee: {backgroundColor: '#EE99AC'},
-typeCombat: {backgroundColor: '#C03028'},
-typePsy: {backgroundColor: '#F85888'},
-typeRoche: {backgroundColor: '#B8A038'},
-typeSpectre: {backgroundColor: '#705898'},
-typeGlace: {backgroundColor: '#98D8D8'},
-typeDragon: {backgroundColor: '#7038F8'},
-typeAcier: {backgroundColor: '#F8F9FA'},
-typeTenebre: {backgroundColor: '#705848'},
-typeVol: {backgroundColor: '#A890F0'},
+typePlante: {     backgroundColor: '#78C850',color:'white'},
+typeFeu: {        backgroundColor: '#F08030',color:'white'},
+typeEau: {        backgroundColor: '#6890F0',color:'white'},
+typeInsect: {     backgroundColor: '#A8B820',color:'white'},
+typeNormal: {     backgroundColor: '#A8A878',color:'white'},
+typePoison: {     backgroundColor: '#A040A0',color:'white'},
+typeElectrique: { backgroundColor: '#F8D030',color:'white'},
+typeSol: {        backgroundColor: '#E0C068',color:'white'},
+typeFee: {        backgroundColor: '#EE99AC',color:'white'},
+typeCombat: {     backgroundColor: '#C03028',color:'white'},
+typePsy: {        backgroundColor: '#F85888',color:'white'},
+typeRoche: {      backgroundColor: '#B8A038',color:'white'},
+typeSpectre: {    backgroundColor: '#705898',color:'white'},
+typeGlace: {      backgroundColor: '#98D8D8',color:'white'},
+typeDragon: {     backgroundColor: '#7038F8',color:'white'},
+typeAcier: {      backgroundColor: '#F8F9FA',color:'#616161'},
+typeTenebre: {    backgroundColor: '#705848',color:'white'},
+typeVol: {        backgroundColor: '#A890F0',color:'white'},
 });
