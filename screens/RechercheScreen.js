@@ -9,9 +9,7 @@ export default function RechercheScreen(props) {
 
   const {navigation, ...restProps} = props
 
-  const [textParent, setTextParent] = useState();
   const [listPokemon, setListPokemon] = useState("");
-  const [nextPage, setNextPage] = useState("https://pokeapi.co/api/v2/pokemon/"+text);
   const [text, setText] = useState('');
   const [pokemonNameSearch, setPokemonNameSearch] = useState('');
   var urlNext = "https://pokeapi.co/api/v2/pokemon/";
@@ -44,17 +42,19 @@ export default function RechercheScreen(props) {
         onSubmitEditing={() => loadPokemon("https://pokeapi.co/api/v2/pokemon/"+text)}
         defaultValue={''}
       />
-      {/* <Text style={{padding: 10, fontSize: 42}}>
-        {text}
-      </Text> */}
-    <FlatList 
-      style={styles.list}
-      numColumns={2}
-      data={listPokemon} 
-      renderItem={renderItem} 
-      keyExtractor={item => item.name}
-      onEndReachedThreshold={0.5}
-    />
+      {(listPokemon === undefined) ?
+        <Text style={styles.center}>Pas de Pokémon trouvé !</Text> :
+        (listPokemon) ?
+          <FlatList 
+            style={styles.list}
+            numColumns={2}
+            data={listPokemon} 
+            renderItem={renderItem} 
+            keyExtractor={item => item.name}
+            onEndReachedThreshold={0.5}
+          /> :
+          <Text style={styles.text}>Pas de Pokémon recherché ! </Text>
+      }
     </>
   )
   
@@ -74,6 +74,13 @@ list: {
 textInput:{
   borderRadius:10,
   backgroundColor:'white',
+  margin:10,
+  padding:5,
+  paddingLeft:10,
+  paddingRight:10
+},
+text:{
+  borderRadius:10,
   margin:10,
   padding:5,
   paddingLeft:10,
