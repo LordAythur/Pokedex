@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, View, ImageBackground } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import Navigation from './Components/Navigation';
+import * as ScreenOrientation from 'expo-screen-orientation'
 
 const Stack = createNativeStackNavigator();
 

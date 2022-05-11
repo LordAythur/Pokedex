@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, Pressable, Text } from 'react-native';
 import { getPokemon } from '../Api/PokeApi';
-import CustomItem from '../Components/Item';
+import CustomItemEquipe from '../Components/ItemEquipe';
+import { retrieveData, storeData } from '../utils/localStorage';
 
 
-export default function HomeScreen(props) {
+export default function EquipeScreen(props) {
 
   const {navigation, ...restProps} = props
 
   const [textParent, setTextParent] = useState();
   const [listPokemon, setListPokemon] = useState("");
-  const [nextPage, setNextPage] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [team, setTeam] = useState([]);
 
   useEffect(() => {
-    loadPokemon(nextPage)
-  }, [])
+    
+    retrieveData("Equipe").then((res) => {
+      if (res) {
+        let datas = JSON.parse(res);
+        setTeam(datas);
+      }
+    });
 
-  const loadPokemon = (url) => {
-    getPokemon(url).then(datas => {
-      setListPokemon([...listPokemon, ...datas.results])
-      setNextPage(datas.next)
-    })
-  }
+  }, []);
 
   const renderItem = ({ item }) => (
-    <CustomItem url={item.url} name={item.name} navigation={navigation}></CustomItem>
+    <CustomItemEquipe url={item.url} name={item.name} navigation={navigation}></CustomItemEquipe>
   );
  
   return(
@@ -34,14 +35,21 @@ export default function HomeScreen(props) {
     <FlatList 
       style={styles.list}
       numColumns={3}
-      data={listPokemon} 
+      data={team} 
       renderItem={renderItem} 
       keyExtractor={item => item.name}
-      onEndReachedThreshold={0.5}
-      onEndReached={() => {
-        loadPokemon(nextPage)
-      }} 
     />
+    <Pressable 
+      style={styles.boutonAdd} 
+      onPress={() => retrieveData("Equipe").then((res) => {
+                        if (res) {
+                          let datas = JSON.parse(res);
+                          setTeam(datas);
+                        }
+                    })}
+                    >
+      <Text style={styles.textBouton}>Actualiser</Text>
+    </Pressable >
     </>
   )
   
@@ -57,5 +65,15 @@ list: {
   flex: 1,
   alignSelf: 'stretch',
   textAlign: 'center',
+},
+boutonAdd:{
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 10,
+  margin: 10,
+  width: 200,
+  borderRadius: 4,
+  elevation: 3,
+  backgroundColor: '#00BB00',
 },
 });

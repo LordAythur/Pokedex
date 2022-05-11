@@ -23,19 +23,23 @@ export default function PokemonDetail(props) {
 
   const [team, setTeam] = useState([]);
   const addTeam = () => {
-    let myTeam = [uri, ...team];
+    let myTeam = [pokemonDatas, ...team];
     
     setTeam(myTeam);
     storeData("Equipe",JSON.stringify(myTeam));
+    console.log(team.length);
   } 
   const delTeam = () => {
     let myTeam = team.filter((pokemon)=>{
+      console.log('pokemon.name : '+pokemon.name);
       return pokemon.name != pokemonDatas.name;
     });
 
     setTeam(myTeam);
 
     storeData("Equipe",JSON.stringify(myTeam));
+    console.log('pokemonDatase : '+pokemonDatas.name);
+    console.log('team : '+team.length);
   }
 
   useEffect(() => {
@@ -133,7 +137,7 @@ export default function PokemonDetail(props) {
                 }
                 count++;
                 typePrecedent = data.name;
-                console.log(typePrecedent);
+                //console.log(typePrecedent);
               }
             }
           });
@@ -176,6 +180,7 @@ export default function PokemonDetail(props) {
             <Text style={[pokemonType(pokemonType1,styles), styles.type]}>{pokemonType1}</Text>
           </View>
           <Text style={styles.desc}>{pokemonDesc}</Text>
+          {/* <Text>{team.length}</Text> */}
           <View style={styles.containerBouton}>
             {team.find((pokemon) => pokemon.name == pokemonDatas.name) ==
             undefined ? (
@@ -187,7 +192,7 @@ export default function PokemonDetail(props) {
                 </Pressable >
               )
             ) : (
-              <Pressable style={styles.boutonDel} onPress={() => delTeam()}>
+                <Pressable style={styles.boutonDel} onPress={() => delTeam()}>
                   <Text style={styles.textBouton}>Supprimer de l'équipe</Text>
                 </Pressable >
             )
