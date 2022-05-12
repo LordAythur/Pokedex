@@ -13,6 +13,14 @@ export default function EquipeScreen(props) {
   const [listPokemon, setListPokemon] = useState("");
   const [team, setTeam] = useState([]);
 
+  const delTeam = () => {
+    let myTeam = [];
+
+    setTeam(myTeam);
+
+    storeData("Equipe",JSON.stringify(myTeam));
+  }
+
   useEffect(() => {
     
     retrieveData("Equipe").then((res) => {
@@ -42,17 +50,24 @@ export default function EquipeScreen(props) {
             keyExtractor={item => item.name}
           />
       }
-    <Pressable 
-      style={styles.boutonAdd} 
-      onPress={() => retrieveData("Equipe").then((res) => {
-                        if (res) {
-                          let datas = JSON.parse(res);
-                          setTeam(datas);
-                        }
-                    })}
-                    >
-      <Text style={styles.textBouton}>Actualiser</Text>
-    </Pressable >
+    <View style={styles.container}>
+      <Pressable 
+        style={styles.boutonAdd} 
+        onPress={() => retrieveData("Equipe").then((res) => {
+                          if (res) {
+                            let datas = JSON.parse(res);
+                            setTeam(datas);
+                          }
+                      })}
+                      >
+        <Text style={styles.textBouton}>Actualiser</Text>
+      </Pressable >
+      <Pressable 
+        style={styles.boutonDel} 
+        onPress={() => delTeam()}>
+        <Text style={styles.textBouton}>Réinistialiser</Text>
+      </Pressable >
+    </View>
     </>
   )
   
@@ -60,8 +75,10 @@ export default function EquipeScreen(props) {
 
 const styles = StyleSheet.create({
 container: {
-  justifyContent: 'center',
+  justifyContent:'space-between',
   alignItems: 'center',
+  display:'flex',
+  flexDirection:'row'
 },
 list: {
   marginLeft: 10,
@@ -74,7 +91,17 @@ boutonAdd:{
   justifyContent: 'center',
   padding: 10,
   margin: 10,
-  width: 200,
+  width: 150,
+  borderRadius: 4,
+  elevation: 3,
+  backgroundColor: '#00BB00',
+},
+boutonDel:{
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 10,
+  margin: 10,
+  width: 100,
   borderRadius: 4,
   elevation: 3,
   backgroundColor: 'red',
@@ -87,6 +114,10 @@ text:{
   margin:10,
   padding:5,
   paddingLeft:10,
-  paddingRight:10
+  paddingRight:10,
+  marginLeft: 10,
+  flex: 1,
+  alignSelf: 'stretch',
+  textAlign: 'center',
 }
 });
