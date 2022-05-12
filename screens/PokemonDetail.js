@@ -47,6 +47,8 @@ export default function PokemonDetail(props) {
         setTeam(tartampion);
       }
     });
+
+    
   }, [isFocused])
 
   const pokemonType = (type, style) => {
@@ -158,7 +160,7 @@ export default function PokemonDetail(props) {
     <View style={styles.container}>
       <Image
         style={styles.imgPokemon}
-        source={{uri: pokemonDatas ? pokemonDatas.sprites.other.home.front_default : null}} //pokemonDatas.sprites.versions["generation-v"]["black-white"].animated.front_default
+        source={{uri: pokemonDatas ? pokemonDatas.sprites.other.home.front_default : null}}
       />
       {
         pokemonDatas ?

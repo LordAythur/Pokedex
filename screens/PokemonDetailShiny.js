@@ -158,7 +158,7 @@ export default function PokemonDetail(props) {
     <View style={styles.container}>
       <Image
         style={styles.imgPokemon}
-        source={{uri: pokemonDatas ? pokemonDatas.sprites.other.home.front_shiny : null}} //pokemonDatas.sprites.versions["generation-v"]["black-white"].animated.front_default
+        source={{uri: pokemonDatas ? pokemonDatas.sprites.other.home.front_shiny : null}}
       />
       {
         pokemonDatas ?
@@ -252,6 +252,10 @@ containerTitle: {
 title: {
   fontWeight:'bold',
   fontSize:40,
+  color: '#FFD700',
+  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+  textShadowOffset: {width: -2, height: 2},
+  textShadowRadius: 1
 },
 titleGrey: {
   color:'#616161',
