@@ -12,7 +12,6 @@ const [pokemonSprite, setPokemonSprite] = useState(null)
 
 useEffect(() => {
     getPokemonInfo(uri).then(data => {
-        console.log('fin :'+uri)
         setPokemonSprite(data.sprites.other["official-artwork"].front_default)
         setPokemonDatas(data)
     })
@@ -26,16 +25,6 @@ function onPress(){
         navigation.navigate('PokemonDetailSearch',{
             uri:uri,
         });
-    //})
-    /*
-    getPokemonSpecies(pokemonDatas.species.url).then(data => {
-        console.log(data);
-        // const name = data.names.find(name => name.language.name = "fr");
-        navigation.navigate('PokemonDetail',{
-            // pokeNameVf: name,
-        });
-    })
-    */
 }
 
 return (

@@ -5,8 +5,6 @@ export default function CustomButton(props) {
 
     const {text, color, displayColor, name, setTextParent, image, ...restProps} = props
 
-    //console.log(text, color)
-
     return (
         <Button 
             style={styles.button}

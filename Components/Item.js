@@ -6,8 +6,6 @@ export default function CustomItem(props) {
 
     const {name, url, navigation, ...restProps} = props
 
-    //console.log(text, color)
-
     return (
         <View style={styles.item}>
             <TilePokemon uri={url} navigation={navigation}></TilePokemon>

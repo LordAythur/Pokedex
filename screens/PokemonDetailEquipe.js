@@ -27,19 +27,15 @@ export default function PokemonDetail(props) {
     
     setTeam(myTeam);
     storeData("Equipe",JSON.stringify(myTeam));
-    console.log(team.length);
   } 
   const delTeam = () => {
     let myTeam = team.filter((pokemon)=>{
-      console.log('pokemon.name : '+pokemon.name);
       return pokemon.name != pokemonDatas.name;
     });
 
     setTeam(myTeam);
 
     storeData("Equipe",JSON.stringify(myTeam));
-    console.log('pokemonDatase : '+pokemonDatas.name);
-    console.log('team : '+team.length);
   }
 
   useEffect(() => {
@@ -51,8 +47,6 @@ export default function PokemonDetail(props) {
         setTeam(tartampion);
       }
     });
-    
-    //console.log(uri);
   }, [isFocused])
 
   const pokemonType = (type, style) => {
@@ -137,7 +131,6 @@ export default function PokemonDetail(props) {
                 }
                 count++;
                 typePrecedent = data.name;
-                //console.log(typePrecedent);
               }
             }
           });
@@ -147,7 +140,6 @@ export default function PokemonDetail(props) {
       count = 0;
 
       getPokemon(datas.species.url).then(data => {
-        //console.log(data);
         const name = data.names.find(name => name.language.name === "fr");
         const desc = data.flavor_text_entries.find(desc => desc.language.name === "fr") ;
         setPokemonNameVf(name.name);

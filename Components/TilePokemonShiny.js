@@ -25,16 +25,6 @@ function onPress(){
         navigation.navigate('PokemonDetailShiny',{
             uri:uri,
         });
-    //})
-    /*
-    getPokemonSpecies(pokemonDatas.species.url).then(data => {
-        console.log(data);
-        // const name = data.names.find(name => name.language.name = "fr");
-        navigation.navigate('PokemonDetail',{
-            // pokeNameVf: name,
-        });
-    })
-    */
 }
 
 return (

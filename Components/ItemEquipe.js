@@ -6,8 +6,6 @@ export default function CustomItem(props) {
 
     const {name, url, navigation, ...restProps} = props
 
-    console.log(url)
-
     return (
         <View style={styles.item}>
             <TilePokemonEquipe uri={'https://pokeapi.co/api/v2/pokemon/'+name} navigation={navigation}></TilePokemonEquipe>

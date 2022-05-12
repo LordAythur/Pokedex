@@ -20,7 +20,6 @@ export default function RechercheScreen(props) {
   const loadPokemon = (url) => {
     getPokemon(url).then(datas => {
       setListPokemon([datas])
-      console.log(urlNext)
     })
   }
 
