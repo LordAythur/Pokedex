@@ -32,13 +32,16 @@ export default function EquipeScreen(props) {
     <>
     <View style={styles.container}>
     </View>
-    <FlatList 
-      style={styles.list}
-      numColumns={3}
-      data={team} 
-      renderItem={renderItem} 
-      keyExtractor={item => item.name}
-    />
+    {(team.length === 0) ?
+        <Text style={styles.text}>Pas de Pokémon dans votre équipe !</Text> :
+          <FlatList 
+            style={styles.list}
+            numColumns={3}
+            data={team} 
+            renderItem={renderItem} 
+            keyExtractor={item => item.name}
+          />
+      }
     <Pressable 
       style={styles.boutonAdd} 
       onPress={() => retrieveData("Equipe").then((res) => {
@@ -74,6 +77,16 @@ boutonAdd:{
   width: 200,
   borderRadius: 4,
   elevation: 3,
-  backgroundColor: '#00BB00',
+  backgroundColor: 'red',
 },
+textBouton:{
+  color: 'white'
+},
+text:{
+  borderRadius:10,
+  margin:10,
+  padding:5,
+  paddingLeft:10,
+  paddingRight:10
+}
 });
