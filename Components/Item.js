@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import TilePokemon from './TilePokemon';
+import { getPokemon } from '../Api/PokeApi';
 
 export default function CustomItem(props) {
 
     const {name, url, navigation, ...restProps} = props
+    const [pokemonNameVf, setPokemonNameVf] = useState("");
+
+    useEffect(() => {
+        loadPokemon(url)
+      }, [])
+    
+      const loadPokemon = (url) => {
+        getPokemon(url).then(datas => {
+            getPokemon(datas.species.url).then(data => {
+                const name = data.names.find(name => name.language.name === "fr");
+                setPokemonNameVf(name.name);
+            })
+        })
+      }
 
     return (
         <View style={styles.item}>
