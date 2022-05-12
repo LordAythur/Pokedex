@@ -15,6 +15,7 @@ export default function RechercheScreen(props) {
   var urlNext = "https://pokeapi.co/api/v2/pokemon/";
 
   useEffect(() => {
+    console.log(listPokemon)
   }, [])
 
   const loadPokemon = (url) => {
@@ -52,7 +53,7 @@ export default function RechercheScreen(props) {
             keyExtractor={item => item.name}
             onEndReachedThreshold={0.5}
           /> :
-          <Text style={styles.text}>Pas de Pokémon recherché ! </Text>
+          <Text style={styles.center}>Utilisez la barre de recherche pour trouver un Pokémon</Text>
       }
     </>
   )
@@ -64,11 +65,25 @@ container: {
   justifyContent: 'center',
   alignItems: 'center',
 },
+center: {
+  marginLeft: 10,
+  flex: 1,
+  alignSelf: 'stretch',
+  textAlign: 'center',
+  borderRadius:10,
+  backgroundColor:'white',
+  margin:10,
+  padding:5,
+},
 list: {
   marginLeft: 10,
   flex: 1,
   alignSelf: 'stretch',
   textAlign: 'center',
+  borderRadius:10,
+  backgroundColor:'white',
+  margin:10,
+  padding:5,
 },
 textInput:{
   borderRadius:10,
