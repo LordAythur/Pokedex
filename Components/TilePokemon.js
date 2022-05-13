@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Vibration} from 'react-native';
-import { getPokemonInfo, getPokemonSpecies } from '../Api/PokeApi';
+import { StyleSheet, Image, TouchableOpacity, Vibration} from 'react-native';
+import { getPokemonInfo } from '../Api/PokeApi';
 
 
 export default function Sprite(props) {
@@ -21,10 +21,9 @@ useEffect(() => {
 
 function onPress(){
     Vibration.vibrate(10 * 0.5);
-    //getPokemonInfo(uri).then(data => {
-        navigation.navigate('PokemonDetail',{
-            uri:uri,
-        });
+    navigation.navigate('PokemonDetail',{
+        uri:uri,
+    });
 }
 
 return (

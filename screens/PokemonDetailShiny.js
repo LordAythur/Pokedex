@@ -1,25 +1,20 @@
 import { useIsFocused } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList, Text, Image, Pressable } from 'react-native';
-import { getPokemon, getPokemonSpecies } from '../Api/PokeApi';
-import CustomItem from '../Components/Item';
+import { StyleSheet, View, Text, Image, Pressable } from 'react-native';
+import { getPokemon } from '../Api/PokeApi';
 import { retrieveData, storeData } from '../utils/localStorage';
 
 
 export default function PokemonDetail(props) {
   const isFocused = useIsFocused()
-  const {navigation, route, ...restProps} = props
+  const {navigation, route} = props
   const { uri } = route.params;
 
   const [pokemonDatas, setPokemonDatas] = useState("");
-  const [pokemonName, setPokemonName] = useState("");
   const [pokemonNameVf, setPokemonNameVf] = useState("");
   const [pokemonDesc, setPokemonDesc] = useState("");
   const [pokemonType0, setPokemonType0] = useState("");
   const [pokemonType1, setPokemonType1] = useState("");
-  const [pokemonCapa0, setPokemonCapa0] = useState("");
-  const [pokemonCapa1, setPokemonCapa1] = useState("");
-  const [pokemonCapa2, setPokemonCapa2] = useState("");
 
   const [team, setTeam] = useState([]);
   const addTeam = () => {
@@ -112,12 +107,9 @@ export default function PokemonDetail(props) {
     getPokemon(url).then(datas => {
       setPokemonDatas(datas)
       const type = datas.types;
-      const capa = datas.abilities;
 
       var count = 0;
       var typePrecedent = "";
-      var capaPrecedente = "";
-
       type.forEach(type => {
 
         getPokemon(type.type.url).then(data => {
@@ -147,10 +139,6 @@ export default function PokemonDetail(props) {
       })
     })
   }
-
-  const renderItem = ({ item }) => (
-    <CustomItem url={item.url} name={pokeID} navigation={navigation}></CustomItem>
-  );
 
   return(
     <>
@@ -266,12 +254,6 @@ containerBouton: {
   alignItems: 'center',
   flexWrap: 'nowrap',
   flexDirection: 'row'
-},
-capa: {
-  margin: 10,
-  backgroundColor:'#ffffff',
-  padding: 10,
-  borderRadius: 10,
 },
 
 containerType: {

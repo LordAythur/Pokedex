@@ -1,7 +1,7 @@
 import { useIsFocused } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList, Text, Image, Pressable } from 'react-native';
-import { getPokemon, getPokemonSpecies } from '../Api/PokeApi';
+import { StyleSheet, View, Text, Image, Pressable } from 'react-native';
+import { getPokemon } from '../Api/PokeApi';
 import CustomItem from '../Components/Item';
 import { retrieveData, storeData } from '../utils/localStorage';
 
@@ -17,9 +17,6 @@ export default function PokemonDetail(props) {
   const [pokemonDesc, setPokemonDesc] = useState("");
   const [pokemonType0, setPokemonType0] = useState("");
   const [pokemonType1, setPokemonType1] = useState("");
-  const [pokemonCapa0, setPokemonCapa0] = useState("");
-  const [pokemonCapa1, setPokemonCapa1] = useState("");
-  const [pokemonCapa2, setPokemonCapa2] = useState("");
 
   const [team, setTeam] = useState([]);
   const addTeam = () => {
@@ -114,11 +111,9 @@ export default function PokemonDetail(props) {
     getPokemon(url).then(datas => {
       setPokemonDatas(datas)
       const type = datas.types;
-      const capa = datas.abilities;
 
       var count = 0;
       var typePrecedent = "";
-      var capaPrecedente = "";
 
       type.forEach(type => {
 
@@ -138,8 +133,6 @@ export default function PokemonDetail(props) {
           });
         })
       });
-
-      count = 0;
 
       getPokemon(datas.species.url).then(data => {
         const name = data.names.find(name => name.language.name === "fr");
@@ -174,7 +167,6 @@ export default function PokemonDetail(props) {
             <Text style={[pokemonType(pokemonType1,styles), styles.type]}>{pokemonType1}</Text>
           </View>
           <Text style={styles.desc}>{pokemonDesc}</Text>
-          {/* <Text>{team.length}</Text> */}
           <View style={styles.containerBouton}>
             {team.find((pokemon) => pokemon.name == pokemonDatas.name) ==
             undefined ? (
@@ -264,12 +256,6 @@ containerBouton: {
   alignItems: 'center',
   flexWrap: 'nowrap',
   flexDirection: 'row'
-},
-capa: {
-  margin: 10,
-  backgroundColor:'#ffffff',
-  padding: 10,
-  borderRadius: 10,
 },
 
 containerType: {

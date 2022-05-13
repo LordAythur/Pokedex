@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import TilePokemon from './TilePokemon';
 import { getPokemon } from '../Api/PokeApi';
 
@@ -24,7 +24,8 @@ export default function CustomItem(props) {
     return (
         <View style={styles.item}>
             <TilePokemon uri={url} navigation={navigation}></TilePokemon>
-            <Text style={styles.title}>{name}</Text>
+            <Text style={styles.title}>{name}</Text> 
+            {/* pokemonNameVf pour vf sur les noms de pokémon */}
         </View>
     )       
 }

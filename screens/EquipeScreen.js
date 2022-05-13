@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, FlatList, Pressable, Text } from 'react-native';
-import { getPokemon } from '../Api/PokeApi';
 import CustomItemEquipe from '../Components/ItemEquipe';
 import { retrieveData, storeData } from '../utils/localStorage';
 
 
 export default function EquipeScreen(props) {
 
-  const {navigation, ...restProps} = props
-
-  const [textParent, setTextParent] = useState();
-  const [listPokemon, setListPokemon] = useState("");
+  const {navigation} = props
   const [team, setTeam] = useState([]);
 
   const delTeam = () => {

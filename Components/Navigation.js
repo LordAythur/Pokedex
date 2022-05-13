@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { NavigationContainer } from "@react-navigation/native"
-import { TabRouter } from "react-navigation"
 import HomeScreen from '../screens/HomeScreen';
 import HomeScreenShiny from '../screens/HomeScreenShiny';
 import RechercheScreen from '../screens/RechercheScreen';
@@ -12,9 +11,7 @@ import PokemonDetailSearch from '../screens/PokemonDetailSearch';
 import PokemonDetailEquipe from '../screens/PokemonDetailEquipe';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Vibration} from 'react-native';
-import { getPokemon } from '../Api/PokeApi';
 
 import { Ionicons } from '@expo/vector-icons'
 

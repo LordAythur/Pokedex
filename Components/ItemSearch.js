@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import TilePokemonSearch from './TilePokemonSearch';
 
 export default function CustomItem(props) {
 
-    const {image, id, name, url, navigation, ...restProps} = props
+    const {id, name, url, navigation} = props
 
     return (
         <View style={styles.item}>

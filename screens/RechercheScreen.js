@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, StyleSheet, View, FlatList, TextInput } from 'react-native';
-import { SearchBar } from 'react-native-elements';
 import { getPokemon } from '../Api/PokeApi';
 import CustomItemSearch from '../Components/ItemSearch';
 
 
 export default function RechercheScreen(props) {
 
-  const {navigation, ...restProps} = props
+  const {navigation} = props
 
   const [listPokemon, setListPokemon] = useState("");
   const [text, setText] = useState('');
-  const [pokemonNameSearch, setPokemonNameSearch] = useState('');
   var urlNext = "https://pokeapi.co/api/v2/pokemon/";
-
-  useEffect(() => {
-    console.log(listPokemon)
-  }, [])
 
   const loadPokemon = (url) => {
     getPokemon(url).then(datas => {

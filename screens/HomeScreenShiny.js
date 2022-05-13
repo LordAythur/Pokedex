@@ -6,9 +6,8 @@ import CustomItemShiny from '../Components/ItemShiny';
 
 export default function HomeScreenShiny(props) {
 
-  const {navigation, ...restProps} = props
+  const {navigation} = props
 
-  const [textParent, setTextParent] = useState();
   const [listPokemon, setListPokemon] = useState("");
   const [nextPage, setNextPage] = useState("https://pokeapi.co/api/v2/pokemon");
 

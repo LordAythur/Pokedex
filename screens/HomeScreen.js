@@ -6,9 +6,8 @@ import CustomItem from '../Components/Item';
 
 export default function HomeScreen(props) {
 
-  const {navigation, ...restProps} = props
-
-  const [textParent, setTextParent] = useState();
+  const {navigation} = props
+  
   const [listPokemon, setListPokemon] = useState("");
   const [nextPage, setNextPage] = useState("https://pokeapi.co/api/v2/pokemon");
 

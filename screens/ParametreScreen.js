@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Switch } from 'react-native';
-import { getPokemon } from '../Api/PokeApi';
-import CustomItem from '../Components/Item';
 
 
 export default function HomeScreen(props) {
 
-  const {navigation, ...restProps} = props
+  const {navigation} = props
   const [isEnabledTop, setIsEnabledTop] = useState(false);
   const [isEnabledBottom, setIsEnabledBottom] = useState(false);
   const toggleSwitchTop = () => setIsEnabledTop(previousStateTop => !previousStateTop);
@@ -25,7 +23,6 @@ export default function HomeScreen(props) {
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitchTop}
         value={isEnabledTop}
-        style={styles.switch}
       />
       <Text style={styles.choiceYes}>Oui</Text>
     </View>
@@ -40,7 +37,6 @@ export default function HomeScreen(props) {
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitchBottom}
         value={isEnabledBottom}
-        style={styles.switch}
       />
       <Text style={styles.choiceYes}>Oui</Text>
     </View>
@@ -62,12 +58,6 @@ containerFlex: {
   display:'flex',
   flexDirection:'row'
 },
-list: {
-  marginLeft: 10,
-  flex: 1,
-  alignSelf: 'stretch',
-  textAlign: 'center',
-},
 
 title: {
   fontWeight:'bold',
@@ -83,8 +73,4 @@ choiceYes: {
   fontSize:15,
   color:'red'
 },
-
-siwtch: {
-width:20,
-}
 });
