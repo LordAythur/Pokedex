@@ -20,14 +20,14 @@ export default function PokemonDetail(props) {
 
   const [team, setTeam] = useState([]);
   const addTeam = () => {
-    let myTeam = [pokemonDatas, ...team];
+    let myTeam = [[0,pokemonDatas], ...team];
     
     setTeam(myTeam);
     storeData("Equipe",JSON.stringify(myTeam));
   } 
   const delTeam = () => {
     let myTeam = team.filter((pokemon)=>{
-      return pokemon.name != pokemonDatas.name;
+      return pokemon[1].name != pokemonDatas.name;
     });
 
     setTeam(myTeam);
@@ -167,7 +167,7 @@ export default function PokemonDetail(props) {
           <Text style={styles.desc}>{pokemonDesc}</Text>
           {/* <Text>{team.length}</Text> */}
           <View style={styles.containerBouton}>
-            {team.find((pokemon) => pokemon.name == pokemonDatas.name) ==
+            {team.find((pokemon) => pokemon[1].name == pokemonDatas.name) ==
             undefined ? (
               team.length >= 6 ? (
                 <Text>Vous ne pouvez pas avoir plus de 6 Pokémon dans votre équipe.</Text>

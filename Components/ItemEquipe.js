@@ -4,13 +4,12 @@ import TilePokemonEquipe from './TilePokemonEquipe';
 
 export default function CustomItem(props) {
 
-    const {name, navigation} = props
+    const {name, shiny, navigation} = props
 
     return (
         <View style={styles.item}>
-            <TilePokemonEquipe uri={'https://pokeapi.co/api/v2/pokemon/'+name} navigation={navigation}></TilePokemonEquipe>
+            <TilePokemonEquipe uri={'https://pokeapi.co/api/v2/pokemon/'+name} shiny={shiny} navigation={navigation}></TilePokemonEquipe>
             <Text style={styles.title}>{name}</Text>
-            {/* pokemonNameVf pour vf sur les noms de pokémon */}
         </View>
     )       
 }

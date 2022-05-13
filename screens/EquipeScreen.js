@@ -29,7 +29,7 @@ export default function EquipeScreen(props) {
   }, []);
 
   const renderItem = ({ item }) => (
-    <CustomItemEquipe url={item.url} name={item.name} navigation={navigation}></CustomItemEquipe>
+    <CustomItemEquipe url={item[1].url} name={item[1].name} shiny={item[0]} navigation={navigation}></CustomItemEquipe>
   );
  
   return(

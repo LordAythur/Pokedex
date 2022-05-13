@@ -5,15 +5,19 @@ import { getPokemonInfo } from '../Api/PokeApi';
 
 export default function Sprite(props) {
 
-const {uri, navigation} = props 
+const {uri, shiny, navigation} = props 
 
 const [pokemonDatas, setPokemonDatas] = useState(null)
 const [pokemonSprite, setPokemonSprite] = useState(null)
+const [pokemonSpriteShiny, setPokemonSpriteShiny] = useState(null)
+const [isPokemonShiny, setIsPokemonShiny] = useState(null)
 
 useEffect(() => {
     getPokemonInfo(uri).then(data => {
-        setPokemonSprite(data.sprites.other["official-artwork"].front_default)
+        setPokemonSprite(data.sprites.other.home.front_default)
+        setPokemonSpriteShiny(data.sprites.other.home.front_shiny)
         setPokemonDatas(data)
+        setIsPokemonShiny(shiny)
     })
 }, [])
 
@@ -28,10 +32,20 @@ function onPress(){
 
 return (
     <TouchableOpacity onPress={() => onPress()}>
-        <Image
-            style={styles.imgPokemon}
-            source={{uri: pokemonSprite}}
-        />
+        
+
+        {isPokemonShiny == 0 ? (
+                <Image
+                    style={styles.imgPokemon}
+                    source={{uri: pokemonSprite}}
+                />
+            ) : (
+                <Image
+                    style={styles.imgPokemon}
+                    source={{uri: pokemonSpriteShiny}}
+                />
+            )
+            }
     </TouchableOpacity>
 )       
 }
