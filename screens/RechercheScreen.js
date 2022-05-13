@@ -15,6 +15,7 @@ export default function RechercheScreen(props) {
   const loadPokemon = (url) => {
     getPokemon(url).then(datas => {
       setListPokemon([datas])
+      console.log(listPokemon);
     })
   }
 
@@ -36,7 +37,7 @@ export default function RechercheScreen(props) {
         onSubmitEditing={() => loadPokemon("https://pokeapi.co/api/v2/pokemon/"+text)}
         defaultValue={''}
       />
-      {(listPokemon === undefined) ?
+      {(listPokemon[0] === undefined) ?
         <Text style={styles.center}>Pas de Pokémon trouvé !</Text> :
         (listPokemon) ?
           <FlatList 
