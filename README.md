@@ -27,4 +27,5 @@
   - Simulation de l'autorisation attribuée à l'application pour avoir accès aux fichiers et activer la rotation.
 
 # Démo vidéo (au cas où ça bug)
+https://youtu.be/SDWaROwfkRE
 
