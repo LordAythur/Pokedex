@@ -12,21 +12,22 @@ const Image = { uri : "https://static.wikia.nocookie.net/pokemongo/images/d/d1/P
 
 export default function App() {
 
-  // const [orientationIsLandscape,setOrientation]=useState(true)
+  const [orientationIsLandscape,setOrientation]=useState(true)
 
-  // async function changeScreenOrientation(){
+  async function changeScreenOrientation(){
 
-  //   if(orientationIsLandscape==true){
-  //   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
-  //   }
-  //   else if(orientationIsLandscape==false){
-  //     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
-  //   }
-  // }
-  // const toggleOrientation=()=>{
-  //   setOrientation(!orientationIsLandscape)
-  //   changeScreenOrientation()
-  // }
+    if(orientationIsLandscape==true){
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
+    }
+    else if(orientationIsLandscape==false){
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
+    }
+  }
+  
+  const toggleOrientation=()=>{
+    setOrientation(!orientationIsLandscape)
+    changeScreenOrientation()
+  }
 
 return (    
 //<ImageBackground source={Image} resizeMode="cover" style={styles.image}>
